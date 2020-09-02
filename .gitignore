@@ -2,3 +2,4 @@
 .DS_Store
 db.sqlite3
 test_code.py
+secret_settings.py
