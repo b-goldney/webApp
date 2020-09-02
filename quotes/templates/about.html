@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>About Pappy ... </h1>
+<h1>About This Page... </h1>
+The purpose of this page is to demonstrate the basic functionality of creating a dynamic table
+and updating the data via API calls.  
+<ul>
+	<li> <b>"Add Stock" tab: </b> the table leverages an API offered by 
+<a href="https://iexcloud.io/"> iex cloud</a>. We can add stocks via the 
+       "Add to Portfolio" search bar.	</li>
+	<li> <b> "Delete Stock" tab: </b> We can delete any  stocks that we no longer want. </li>
+	<li><b> "Get Stock Quote" search bar: </b> Entering a ticker returns basic stock information 
+		such as price, market cap, YTD percentage change, etc. </li>
+</ul>
+<br>
+
+<b>Next steps</b>: <br>
+<ul>
+	<li> Add graphs that enable the user to select arbitrary time periods
+		to view the stock price data. </li>
+	<li> Subsequently, we will build in basic analysis such as trend lines and other custom tools. </li>
+</ul>
 
 {% endblock %}

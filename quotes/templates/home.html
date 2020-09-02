@@ -9,12 +9,32 @@
 	{% if api == "Error pulling stock data via the API" %}
 		There was a problem with the ticker symbol.
 	{% else %}
-		Price: ${{ api.latestPrice }} <br/>
-		Previous Close: ${{ api.previousClose }} <br/>
-		Market Cap: ${{ api.marketCap }} <br/>
-		YTD Change: {{ api.ytdChange }} <br/>	
-		52 Week High: ${{ api.week52High }} <br/>
-		52 Week Low: ${{ api.week52Low }} <br/>
+	<h2> {{ api.companyName }} </h2><br>
+	
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Stock Price</th>
+      <th scope="col">Previous Close</th>
+      <th scope="col">Market Cap<sup>1</sup></th>
+      <th scope="col">YTD Change</th>
+      <th scope="col">52 Week High</th>
+      <th scope="col">52 Week Low</th>
+    </tr>
+  </thead>
+  <tbody>
+	
+{% load humanize %}
+	
+	<tr>
+		<td style="text-align: right">{{api.latestPrice |floatformat:2|intcomma}} </td>
+		<td style="text-align: right">{{api.previousClose|floatformat:2|intcomma }} </td>
+		<td style="text-align: right">{{api.marketCap|floatformat:2|intcomma}} </td>
+		<td style="text-align: right">{{api.ytdChange | floatformat:1 }}% </td>
+		<td style="text-align: right">{{api.week52High|floatformat:2|intcomma }} </td>
+		<td style="text-align: right">{{api.week52Low |floatformat:2|intcomma}} </td>
+	</tr>
+	
 	{% endif %}
 {% endif %}
 

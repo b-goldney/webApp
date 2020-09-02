@@ -33,7 +33,7 @@ def add_stock(request):
 
        if form.is_valid():
            form.save()
-           messages.success(request, ("Pappy Has a New Stock"))
+           messages.success(request, ("Stock Added"))
            return redirect('add_stock')
     else:
         ticker = Stock.objects.all()
@@ -47,14 +47,18 @@ def add_stock(request):
                 output.append(api) 
             except Exception as e:
                 api = "Error pulling stock data via the API. Probably due to a bad ticker symbol"
-        
+     
+        for company in output:
+            company['marketCap'] /= 1000000000 #set all market caps in billions of dollars
+            #company['marketCap'] /= format(company['marketCap'], ",") 
+            company['ytdChange'] *= 100
         return render(request, 'add_stock.html', {'ticker': ticker, 'output':output})
 
 
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)
     item.delete()
-    messages.success(request, ("Is pappy deleting stocks because she sold them to buy dresses?"))
+    messages.success(request, ("Stock deleted"))
     return redirect(delete_stock)
 
 def delete_stock(request):

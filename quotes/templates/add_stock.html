@@ -20,7 +20,7 @@
       <th scope="col">Company Name</th>
       <th scope="col">Stock Price</th>
       <th scope="col">Previous Close</th>
-      <th scope="col">Market Cap</th>
+      <th scope="col">Market Cap<sup>1</sup></th>
       <th scope="col">YTD Change</th>
       <th scope="col">52 Week High</th>
       <th scope="col">52 Week Low</th>
@@ -29,22 +29,23 @@
   <tbody>
 
 {% if ticker %}
-	      
+{% load humanize %}
 {% for list_item in output %}
 	<tr>
 		<th scope = "row">{{ list_item.companyName }}</th>
-		<td>{{ list_item.latestPrice }} </td>
-		<td>{{ list_item.previousClose }} </td>
-		<td>{{ list_item.marketCap }} </td>
-		<td>{{ list_item.ytdChange }} </td>
-		<td>{{ list_item.week52High }} </td>
-		<td>{{ list_item.week52Low }} </td>
+		<td style="text-align: right">{{ list_item.latestPrice |floatformat:2|intcomma}} </td>
+		<td style="text-align: right">{{ list_item.previousClose|floatformat:2|intcomma }} </td>
+		<td style="text-align: right">{{ list_item.marketCap|floatformat:2|intcomma}} </td>
+		<td style="text-align: right">{{ list_item.ytdChange | floatformat:1 }}% </td>
+		<td style="text-align: right">{{ list_item.week52High|floatformat:2|intcomma }} </td>
+		<td style="text-align: right">{{ list_item.week52Low |floatformat:2|intcomma}} </td>
 	</tr>
 {% endfor %}
 {% endif %}
- 
  </tbody>
 </table>
+<sup>1</sup> All numbers in USD billions.
+
 {% endblock %}
 
 <br/><br/>
